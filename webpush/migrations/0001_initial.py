@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
             name='PushInformation',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('group', models.ForeignKey(related_name='webpush_info', blank=True, to='webpush_notification.Group', null=True)),
+                ('group', models.ForeignKey(related_name='webpush_info', blank=True, to='webpush.Group', null=True)),
             ],
         ),
         migrations.CreateModel(
@@ -39,7 +39,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='pushinformation',
             name='subscription',
-            field=models.ForeignKey(related_name='webpush_info', to='webpush_notification.SubscriptionInfo'),
+            field=models.ForeignKey(related_name='webpush_info', to='webpush.SubscriptionInfo'),
         ),
         migrations.AddField(
             model_name='pushinformation',
