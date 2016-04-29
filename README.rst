@@ -7,10 +7,10 @@ in Django Application. **This is a Work in Progress package. As the `Web
 Push Notification specification <https://www.w3.org/TR/push-api/>`__ is
 still in draft, things may change soon. So keep updated.**
 
-*Currently, it Supports Sending Push Notification to **Firefox 46+**
+\*Currently, it Supports Sending Push Notification to **Firefox 46+**
 Only. Chrome Support will be added soon. But we still keep the
-subscription infor of Chrome users. So in future when we make the
-upgrade, it will be possible to send notification to them*
+subscription information of Chrome users. So in future when we make the
+upgrade, it will be possible to send notification to them.
 
 --------------
 
@@ -39,7 +39,7 @@ Then include ``webpush`` in the ``urls.py``
 
     urlpatterns =
 
-        url(r'^webpush/', include('webpush_notification.urls'))
+        url(r'^webpush/', include('webpush.urls'))
     ]
 
 Then run Migration by **``python manage.py migrate``**
