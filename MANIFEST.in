@@ -1,4 +1,4 @@
 include LICENSE
 include README.rst
-recursive-include webpush_notification/static *
-recursive-include webpush_notification/templates *
+recursive-include webpush/static *
+recursive-include webpush/templates *
