@@ -1,0 +1,4 @@
+{% if request.user.is_authenticated or group %}
+  <button id="webpush-subscribe-button"> Subscribe to Push Messaging </button>
+  <div id="webpush-message" hidden></div>
+{% endif %}

@@ -1,0 +1,4 @@
+include LICENSE
+include README.rst
+recursive-include webpush_notification/static *
+recursive-include webpush_notification/templates *

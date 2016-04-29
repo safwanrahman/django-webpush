@@ -1,0 +1,9 @@
+{% if request.user.is_authenticated or group %}
+
+  {% load staticfiles %}
+  <script id="webpush-js" type="text/javascript" src="{% static 'webpush/webpush.js' %}"></script>
+
+  <script id="service-worker-js" type="text/javascript" src="{% static 'webpush/webpush_serviceworker.js' %}"></script>
+
+  <div id="webpush-data" {% if group %} data-group="{{ group }}" {% endif %} data-url="{{ url }}" hidden></div>
+{% endif %}
