@@ -9,11 +9,7 @@ from pywebpush import WebPusher
 def send_notification_to_user(user, payload, ttl=0):
     # Get all the push_info of the user
     push_infos = user.webpush_info.select_related("subscription")
-
-    numbers = range(push_infos.count())
-
-    for i in numbers:
-        push_info = push_infos[i]
+    for push_info in push_infos:
         _send_notification(push_info, payload, ttl)
 
 
@@ -21,12 +17,7 @@ def send_notification_to_group(group_name, payload, ttl=0):
 
     # Get all the subscription related to the group
     push_infos = Group.objects.get(name=group_name).webpush_info.select_related("subscription")
-    # As there can be many subscription, iterating the large number will make it slow
-    # so count the number and cut according to it
-    numbers = range(push_infos.count())
-
-    for i in numbers:
-        push_info = push_infos[i]
+    for push_info in push_infos:
         _send_notification(push_info, payload, ttl)
 
 
