@@ -32,6 +32,6 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     install_requires=[
-        'pywebpush==0.3.2'
+        'pywebpush==0.4.0'
     ]
 )
