@@ -5,5 +5,7 @@
 
   <script id="service-worker-js" type="text/javascript" src="{% static 'webpush/webpush_serviceworker.js' %}"></script>
 
+  <link rel="manifest" href="{% url 'webpush_manifest_json' %}">
+
   <div id="webpush-data" {% if group %} data-group="{{ group }}" {% endif %} data-url="{{ url }}" hidden></div>
 {% endif %}
