@@ -5,7 +5,7 @@ Django-Webpush
 Django-Webpush is a Package made for integrating and sending [Web Push Notification](https://developer.mozilla.org/en/docs/Web/API/Push_API) in Django Application. 
 **This is a Work in Progress package. As the [Web Push Notification specification](https://www.w3.org/TR/push-api/) is still in draft, things may change soon. So keep updated.**
 
-*Currently, it Supports Sending Push Notification to **Firefox 46+** Only. Chrome Support will be added soon. But we still keep the subscription information of Chrome users. So in future when we make the upgrade, it will be possible to send notification to them.
+*Currently, it Supports Sending Push Notification to **Firefox 46+ and Chrome 50+**.
 
 ----------
 
@@ -23,6 +23,17 @@ After installing the package, add `webpush` in in your `INSTALLED_APPS` settings
         ...
         'webpush',
     )
+
+If you would like to send notification to Google Chrome Users, you need to add a ``WEBPUSH_SETTINGS`` entry with the **Google Cloud Messanging ID and Key** Like following:
+```python
+WEBPUSH_SETTINGS = {
+    "GCM_ID": "Your GCM ID",
+    "GCM_KEY":"Your GCM KEY"
+}
+```
+**Replace ``"Your GCM ID"`` and ``"Your GCM KEY"`` with your Google Cloud Messanging ID and Key**
+
+> **To know how to obtain GCM ID and Key please see this [Documentation from Google Developers](https://developers.google.com/web/fundamentals/getting-started/push-notifications/step-04?hl=en) and the [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Push_API/Using_the_Push_API#Setting_up_Google_Cloud_Messaging)**
 
 Then include `webpush` in the `urls.py`
 
@@ -101,7 +112,7 @@ So in order to send notification, see below.
     # The user will get notification to all of his subscribed browser. A user can subscribe many browsers.
     ```
  **And the subscribers will get a notification like**
- ![Web Push Notification](http://i.imgur.com/VA6cxRc.png)  
+ ![Web Push Notification](http://i.imgur.com/VA6cxRc.png)
 
 
 License
@@ -118,3 +129,4 @@ This program is free software; you can redistribute it and/or modify it under th
 
    You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+

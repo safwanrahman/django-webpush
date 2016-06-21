@@ -7,10 +7,7 @@ in Django Application. **This is a Work in Progress package. As the `Web
 Push Notification specification <https://www.w3.org/TR/push-api/>`__ is
 still in draft, things may change soon. So keep updated.**
 
-\*Currently, it Supports Sending Push Notification to **Firefox 46+**
-Only. Chrome Support will be added soon. But we still keep the
-subscription information of Chrome users. So in future when we make the
-upgrade, it will be possible to send notification to them.
+\*Currently, it Supports Sending Push Notification to **Firefox 46+ and Chrome 50+**
 
 --------------
 
@@ -32,6 +29,26 @@ After installing the package, add ``webpush`` in in your
         ...
         'webpush',
     )
+
+If you would like to send notification to Google Chrome Users, you need
+to add a ``WEBPUSH_SETTINGS`` entry with the **Google Cloud Messanging
+ID and Key** Like following:
+
+.. code:: python
+
+    WEBPUSH_SETTINGS = {
+        "GCM_ID": "Your GCM ID",
+        "GCM_KEY":"Your GCM KEY"
+    }
+
+**Replace ``"Your GCM ID"`` and ``"Your GCM KEY"`` with your Google
+Cloud Messanging ID and Key**
+
+    **To know how to obtain GCM ID and Key please see this
+    `Documentation from Google
+    Developers <https://developers.google.com/web/fundamentals/getting-started/push-notifications/step-04?hl=en>`__
+    and the `MDN
+    Documentation <https://developer.mozilla.org/en-US/docs/Web/API/Push_API/Using_the_Push_API#Setting_up_Google_Cloud_Messaging>`__**
 
 Then include ``webpush`` in the ``urls.py``
 
