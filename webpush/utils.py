@@ -1,5 +1,3 @@
-from .models import PushInformation, Group
-
 from django.conf import settings
 from django.forms.models import model_to_dict
 
@@ -14,7 +12,7 @@ def send_notification_to_user(user, payload, ttl=0):
 
 
 def send_notification_to_group(group_name, payload, ttl=0):
-
+    from .models import Group
     # Get all the subscription related to the group
     push_infos = Group.objects.get(name=group_name).webpush_info.select_related("subscription")
     for push_info in push_infos:
