@@ -86,7 +86,7 @@ function subscribe(reg) {
     )
     .catch(
       function(error) {
-        console.log("error")
+        console.log('Subscription error.', error)
       }
     )
 }
