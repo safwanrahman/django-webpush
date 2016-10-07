@@ -131,16 +131,14 @@ function postSubscribeObj(statusType, subscription) {
   // and the push subscription endpoint + key the server needs
   // to send push messages
   
-  var element = document.getElementById('webpush-data'),
-    push_url = element.dataset.url,
-    browser = navigator.userAgent.match(/(firefox|msie|chrome|safari|trident)/ig)[0].toLowerCase(),
+  var browser = navigator.userAgent.match(/(firefox|msie|chrome|safari|trident)/ig)[0].toLowerCase(),
     data = {  status_type: statusType,
               subscription: subscription.toJSON(),
               browser: browser,
-              group: element.dataset.group
+              group: subBtn.dataset.group
            };
 
-  fetch(push_url, {
+  fetch(subBtn.dataset.url, {
     method: 'post',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(data),
