@@ -16,7 +16,7 @@ from .forms import WebPushForm, SubscriptionForm
 def save_info(request):
     # Parse the  json object from post data. return 400 if the json encoding is wrong
     try:
-        post_data = json.loads(request.body)
+        post_data = json.loads(request.body.decode('utf-8'))
     except ValueError:
         return HttpResponse(status=400)
 
