@@ -1,3 +1,5 @@
+import json
+
 from django.conf import settings
 from django.forms.models import model_to_dict
 
@@ -22,6 +24,7 @@ def send_notification_to_group(group_name, payload, ttl=0):
 def _send_notification(push_info, payload, ttl):
     subscription = push_info.subscription
     subscription_data = _process_subscription_info(subscription)
+    payload = json.dumps(payload)
     # Check if GCM info is provided in the settings
     if hasattr(settings,'WEBPUSH_SETTINGS'):
         gcm_key = settings.WEBPUSH_SETTINGS.get('GCM_KEY')
