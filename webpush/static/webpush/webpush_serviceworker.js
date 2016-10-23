@@ -11,10 +11,11 @@ self.addEventListener('push', function(event) {
 
   // Keep the service worker alive until the notification is created.
   event.waitUntil(
-    // Show a notification with title 'ServiceWorker Cookbook' and use the payload
-    // as the body.
-    self.registration.showNotification(head, {
-      body: body,
-    })
+    self.registration.showNotification(head, data)
   );
+});
+
+self.addEventListener('notificationclick', function(event) {
+  console.log('On notification click: ', event.notification.tag);
+  event.notification.close();
 });
