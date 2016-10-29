@@ -3,5 +3,7 @@
 
   <script id="webpush-js" type="text/javascript" src="{% static 'webpush/webpush.js' %}"></script>
   <script id="service-worker-js" type="text/javascript" src="{% static 'webpush/webpush_serviceworker.js' %}"></script>
-  <link rel="manifest" href="{% url 'webpush_manifest_json' %}">
+  {% if include_manifest %}
+    <link rel="manifest" href="{% url 'webpush_manifest_json' %}">
+  {% endif %}
 {% endif %}
