@@ -1,23 +1,29 @@
 from django.conf import settings
+from django.core.exceptions import FieldError
 from django.forms.models import model_to_dict
 
 from pywebpush import WebPusher
 
+def send_notifications(payload, ttl, user=None, group_name=None):
 
-def send_notification_to_user(user, payload, ttl=0):
-    # Get all the push_info of the user
-    push_infos = user.webpush_info.select_related("subscription")
+    # Atleast user or group name should be provided
+    if not user and not group_name:
+        raise FieldError('At least user or group name should be present')
+
+    webpush_requests = []
+
+    if group_name:
+        from .models import Group
+        push_infos = Group.objects.get(name=group_name).webpush_info.select_related("subscription")
+
+    elif user:
+        push_infos = user.webpush_info.select_related("subscription")
+
     for push_info in push_infos:
-        _send_notification(push_info, payload, ttl)
+        webpush_req = _send_notification(push_info, payload, ttl)
+        webpush_requests.append(webpush_req)
 
-
-def send_notification_to_group(group_name, payload, ttl=0):
-    from .models import Group
-    # Get all the subscription related to the group
-    push_infos = Group.objects.get(name=group_name).webpush_info.select_related("subscription")
-    for push_info in push_infos:
-        _send_notification(push_info, payload, ttl)
-
+    return webpush_requests
 
 def _send_notification(push_info, payload, ttl):
     subscription = push_info.subscription
