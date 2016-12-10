@@ -1,5 +1,4 @@
 from django import template
-from django.conf import settings
 from django.core.urlresolvers import reverse
 
 register = template.Library()
@@ -10,11 +9,15 @@ register = template.Library()
 def webpush(context):
     group = context.get('webpush', {}).get('group')
     request = context['request']
-    # If the website already provide a manifest file, we should not include it
-    # into the template. If `MANIFEST` config is not provided,
-    # that means we should generate a manifest by default.
-    include_manifest = settings.WEBPUSH_SETTINGS.get("MANIFEST", True)
-    return {'group': group, 'include_manifest': include_manifest, 'request': request}
+    return {'group': group, 'request': request}
+
+
+@register.filter
+@register.inclusion_tag('manifest.html', takes_context=True)
+def webpush_manifest(context):
+    group = context.get('webpush', {}).get('group')
+    request = context['request']
+    return {'group': group, 'request': request}
 
 
 @register.filter
