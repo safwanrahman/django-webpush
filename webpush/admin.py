@@ -14,6 +14,6 @@ class PushInfoAdmin(admin.ModelAdmin):
         result = []
         payload = {"head": "Hey", "body": "Hello World"}
         for device in queryset:
-            result.append(_send_notification(device, json.dumps(payload), '0'))
+            result.append(_send_notification(device, json.dumps(payload), 0))
 
 admin.site.register(PushInformation, PushInfoAdmin)
