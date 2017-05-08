@@ -150,8 +150,6 @@ is not online. So in order to send notification, see below.
 License
 =======
 
---------------
-
 Copyright © 2016 by Safwan Rahman
 
 This program is free software; you can redistribute it and/or modify it
