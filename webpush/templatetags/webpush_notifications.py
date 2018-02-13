@@ -13,6 +13,14 @@ def webpush(context):
 
 
 @register.filter
+@register.inclusion_tag('manifest.html', takes_context=True)
+def webpush_manifest(context):
+    group = context.get('webpush', {}).get('group')
+    request = context['request']
+    return {'group': group, 'request': request}
+
+
+@register.filter
 @register.inclusion_tag('webpush_button.html', takes_context=True)
 def webpush_button(context):
     group = context.get('webpush', {}).get('group')
