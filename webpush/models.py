@@ -4,6 +4,7 @@ from django.conf import settings
 
 # Create your models here.
 
+
 class Group(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
@@ -20,12 +21,12 @@ class PushInformation(models.Model):
     subscription = models.ForeignKey(SubscriptionInfo, related_name='webpush_info')
     group = models.ForeignKey(Group, related_name='webpush_info', blank=True, null=True)
 
-    def save(self, force_insert=False, force_update=False, using=None):
+    def save(self, *args, **kwargs):
         # Check whether user or the group field is present
         # At least one field should be present there
         # Through from the functionality its not possible, just in case! ;)
         if self.user or self.group:
-            super(PushInformation, self).save()
+            super(PushInformation, self).save(*args, **kwargs)
         else:
             raise FieldError('At least user or group should be present')
 

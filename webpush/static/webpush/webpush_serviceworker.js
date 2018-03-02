@@ -14,7 +14,7 @@ self.addEventListener('push', function(event) {
     // Show a notification with title 'ServiceWorker Cookbook' and use the payload
     // as the body.
     self.registration.showNotification(head, {
-      body: body,
+      body: body
     })
   );
 });

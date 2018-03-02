@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.forms.models import model_to_dict
 
-from pywebpush import WebPusher
+from pywebpush import webpush
 
 
 def send_notification_to_user(user, payload, ttl=0):
@@ -22,13 +22,23 @@ def send_notification_to_group(group_name, payload, ttl=0):
 def _send_notification(push_info, payload, ttl):
     subscription = push_info.subscription
     subscription_data = _process_subscription_info(subscription)
-    # Check if GCM info is provided in the settings
-    if hasattr(settings,'WEBPUSH_SETTINGS'):
-        gcm_key = settings.WEBPUSH_SETTINGS.get('GCM_KEY')
-    else:
-        gcm_key = None
-    req = WebPusher(subscription_data).send(data=payload, ttl=ttl, gcm_key=gcm_key)
+    vapid_data = {}
+
+    webpush_settings = getattr(settings, 'WEBPUSH_SETTINGS', {})
+    vapid_private_key = webpush_settings.get('VAPID_PRIVATE_KEY')
+    vapid_admin_email = webpush_settings.get('VAPID_ADMIN_EMAIL')
+
+    # Vapid keys are optional, and mandatory only for Chrome.
+    # If Vapid key is provided, include vapid key and claims
+    if vapid_private_key:
+        vapid_data = {
+            'vapid_private_key': vapid_private_key,
+            'vapid_claims': {"sub": "mailto:{}".format(vapid_admin_email)}
+        }
+
+    req = webpush(subscription_info=subscription_data, data=payload, ttl=ttl, **vapid_data)
     return req
+
 
 def _process_subscription_info(subscription):
     subscription_data = model_to_dict(subscription, exclude=["browser", "id"])

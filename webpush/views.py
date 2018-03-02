@@ -1,13 +1,8 @@
 import json
-
-from django.conf import settings
-from django.core.exceptions import FieldError
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
 
-from .config import MANIFEST
 from .forms import WebPushForm, SubscriptionForm
 
 
@@ -37,7 +32,7 @@ def save_info(request):
         if request.user.is_authenticated() or group_name:
             # Save the subscription info with subscription data
             # as the subscription data is a dictionary and its valid
-            subscription = subscription_form.get_or_save(subscription_data)
+            subscription = subscription_form.get_or_save()
             web_push_form.save_or_delete(
                 subscription=subscription, user=request.user,
                 status_type=status_type, group_name=group_name)
@@ -50,14 +45,6 @@ def save_info(request):
                 return HttpResponse(status=202)
 
     return HttpResponse(status=400)
-
-
-@require_GET
-def generate_manifest(request):
-    if hasattr(settings,'WEBPUSH_SETTINGS'):
-        return JsonResponse(MANIFEST)
-    else:
-        return HttpResponse(status=404)
 
 
 def process_subscription_data(post_data):
