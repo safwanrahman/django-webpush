@@ -1,11 +1,11 @@
-Django-Webpush
+﻿Django-Webpush
 ===================
 
 
-Django-Webpush is a Package made for integrating and sending [Web Push Notification](https://developer.mozilla.org/en/docs/Web/API/Push_API) in Django Application. 
+Django-Webpush is a Package made for integrating and sending [Web Push Notification](https://developer.mozilla.org/en/docs/Web/API/Push_API) in Django Application.
 **This is a Work in Progress package. As the [Web Push Notification specification](https://www.w3.org/TR/push-api/) is still in draft, things may change soon. So keep updated.**
 
-Currently, it Supports Sending Push Notification to **Firefox 46+ and Chrome 50+**.
+Currently, it Supports Sending Push Notification to **Firefox 46+ and Chrome 52+**.
 
 ----------
 
@@ -19,21 +19,24 @@ You can install it easily from pypi by running
 
 After installing the package, add `webpush` in in your `INSTALLED_APPS` settings
 
+```python
     INSTALLED_APPS = (
         ...
         'webpush',
     )
+```
 
-If you would like to send notification to Google Chrome Users, you need to add a ``WEBPUSH_SETTINGS`` entry with the **Google Cloud Messanging ID and Key** Like following:
+If you would like to send notification to Google Chrome Users, you need to add a ``WEBPUSH_SETTINGS`` entry with the **Vapid Credentials** Like following:
 ```python
 WEBPUSH_SETTINGS = {
-    "GCM_ID": "Your GCM ID",
-    "GCM_KEY":"Your GCM KEY"
+    "VAPID_PUBLIC_KEY": "Vapid Public Key",
+    "VAPID_PRIVATE_KEY":"Vapid Private Key",
+    "VAPID_ADMIN_EMAIL": "admin@example.com"
 }
 ```
-**Replace ``"Your GCM ID"`` and ``"Your GCM KEY"`` with your Google Cloud Messanging ID and Key**
+**Replace ``"Vapid Public Key"`` and ``"Vapid Private Key"`` with your Vapid Keys. Also replace ``admin@example.com`` with your email so that the push server of browser can reach to you if anything goes wrong.**
 
-> **To know how to obtain GCM ID and Key please see this [Documentation from Google Developers](https://developers.google.com/web/fundamentals/getting-started/push-notifications/step-04?hl=en) and the [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Push_API/Using_the_Push_API#Setting_up_Google_Cloud_Messaging)**
+> **To know how to obtain Vapid Keys please see this [`py_vapid`](https://github.com/web-push-libs/vapid/tree/master/python) and [Google Developer Documentation](https://developers.google.com/web/fundamentals/push-notifications/subscribing-a-user#how_to_create_application_server_keys). You can obtain one easily from [web-push-codelab.glitch.me](https://web-push-codelab.glitch.me/). ``Application Server Keys`` and ``Vapid Keys`` both are same.**
 
 Then include `webpush` in the `urls.py`
 
