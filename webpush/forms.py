@@ -35,7 +35,7 @@ class SubscriptionForm(forms.ModelForm):
 
     class Meta:
         model = SubscriptionInfo
-        fields = ('endpoint', 'auth', 'p256dh')
+        fields = ('endpoint', 'auth', 'p256dh', 'browser')
 
     def get_or_save(self):
         subscription, created = SubscriptionInfo.objects.get_or_create(**self.cleaned_data)
