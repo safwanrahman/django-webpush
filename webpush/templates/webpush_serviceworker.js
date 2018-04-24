@@ -9,7 +9,7 @@ self.addEventListener('push', function(event) {
     head = data.head,
     body = data.body,
     icon = data.icon;
-
+  // Url needs to be acessed from outside this method.
   url = data.url
 
   // Keep the service worker alive until the notification is created.
@@ -23,6 +23,8 @@ self.addEventListener('push', function(event) {
   );
 });
 
+// When user clicks in the notification, opens a new window with the url 
+// and closes the notification.
 self.addEventListener('notificationclick', function (event) {
   event.waitUntil(
     self.clients.openWindow(url),
