@@ -1,20 +1,32 @@
-
+let url;
 // Register event listener for the 'push' event.
 self.addEventListener('push', function(event) {
   // Retrieve the textual payload from event.data (a PushMessageData object).
   // Other formats are supported (ArrayBuffer, Blob, JSON), check out the documentation
   // on https://developer.mozilla.org/en-US/docs/Web/API/PushMessageData.
-  var payload = event.data ? event.data.text() : {"head": "No Content", "Body": "No Content"},
+  let payload = event.data ? event.data.text() : {"head": "No Content", "body": "No Content", "icon": "", "url": ""},
     data = JSON.parse(payload),
     head = data.head,
-    body = data.body;
+    body = data.body,
+    icon = data.icon;
+
+  url = data.url
 
   // Keep the service worker alive until the notification is created.
   event.waitUntil(
     // Show a notification with title 'ServiceWorker Cookbook' and use the payload
     // as the body.
     self.registration.showNotification(head, {
-      body: body
+      body: body,
+      icon: icon,
     })
   );
 });
+
+self.addEventListener('notificationclick', function (event) {
+  event.waitUntil(
+    self.clients.openWindow(url),
+    event.notification.close()
+  );
+})
+
