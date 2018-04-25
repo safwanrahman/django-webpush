@@ -30,6 +30,5 @@ self.addEventListener('notificationclick', function (event) {
     event.notification.close(),
     self.clients.openWindow(url)
   );
-  console.log(url)
 })
 
