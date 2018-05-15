@@ -100,7 +100,7 @@ So in order to send notification, see below.
     payload = {"head": "Welcome!", "body": "Hello World"}
     
     send_group_notification(group_name="my_group", payload=payload, ttl=1000)
-    # All subscribe subscribe through "my_group" will get a web push notification. A ttl of 1000 is passed so the web push server will store the data maximum 1000 milliseconds if any user is not online
+    # All subscribe subscribe through "my_group" will get a web push notification. A ttl of 1000 is passed so the web push server will store the data maximum 1000 seconds if any user is not online
     
     ```
 
