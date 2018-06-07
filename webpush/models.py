@@ -17,9 +17,9 @@ class SubscriptionInfo(models.Model):
 
 
 class PushInformation(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='webpush_info', blank=True, null=True)
-    subscription = models.ForeignKey(SubscriptionInfo, related_name='webpush_info')
-    group = models.ForeignKey(Group, related_name='webpush_info', blank=True, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='webpush_info', blank=True, null=True, on_delete=models.CASCADE)
+    subscription = models.ForeignKey(SubscriptionInfo, related_name='webpush_info', on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, related_name='webpush_info', blank=True, null=True, on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
         # Check whether user or the group field is present
