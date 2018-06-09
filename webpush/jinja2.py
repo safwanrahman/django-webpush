@@ -20,7 +20,7 @@ class WebPushExtension(Extension):
     @contextfunction
     def webpush_header(self, context):
         template_context = get_templatetag_context(context)
-        data = render_to_string('webpush.html', template_context, using='django')
+        data = render_to_string('webpush_header.html', template_context, using='django')
         return mark_safe(data)
 
     @contextfunction
