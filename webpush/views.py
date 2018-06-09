@@ -29,7 +29,7 @@ def save_info(request):
         group_name = web_push_data.pop("group")
 
         # We at least need the user or group to subscribe for a notification
-        if request.user.is_authenticated() or group_name:
+        if request.user.is_authenticated or group_name:
             # Save the subscription info with subscription data
             # as the subscription data is a dictionary and its valid
             subscription = subscription_form.get_or_save()
