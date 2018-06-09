@@ -1,7 +1,7 @@
 import os
 from setuptools import find_packages, setup
 
-with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
+with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
     README = readme.read()
 
 # allow setup.py to be run from any path
@@ -15,6 +15,7 @@ setup(
     license='GNU Public License',
     description='A simple Django package to integrate Web Push Notification in your Application',
     long_description=README,
+    long_description_content_type="text/markdown",
     url='https://www.github.com/safwanrahman/django-webpush',
     author='Safwan Rahman',
     author_email='safwan.rahman15@gmail.com',
