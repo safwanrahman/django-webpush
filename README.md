@@ -20,10 +20,10 @@ You can install it easily from pypi by running
 After installing the package, add `webpush` in in your `INSTALLED_APPS` settings
 
 ```python
-    INSTALLED_APPS = (
-        ...
-        'webpush',
-    )
+INSTALLED_APPS = (
+    ...
+    'webpush',
+)
 ```
 
 If you would like to send notification to Google Chrome Users, you need to add a ``WEBPUSH_SETTINGS`` entry with the **Vapid Credentials** Like following:
@@ -47,7 +47,10 @@ urlpatterns =  [
   ```
 
 
-`django-webpush` is shipped with build in **`jinja`** support. If you would like to use with jinja backend, pass ``pipeline.jinja2.PipelineExtension`` to your jinja environment. Like following:
+`django-webpush` is shipped with built in **`jinja`** support.
+If you would like to use with jinja backend,
+pass ``pipeline.jinja2.PipelineExtension`` to your jinja environment. Like following:
+
 ```python
 {
     "BACKEND": "django_jinja.backend.Jinja2",
