@@ -2,6 +2,7 @@ import json
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
+from django.views.generic import TemplateView
 
 from .forms import WebPushForm, SubscriptionForm
 
@@ -57,3 +58,13 @@ def process_subscription_data(post_data):
     # Insert the browser name
     subscription_data["browser"] = post_data.pop("browser")
     return subscription_data
+
+
+class ServiceWorkerView(TemplateView):
+    """
+    Service Worker need to be loaded from same domain.
+    Therefore, use TemplateView in order to server the webpush_serviceworker.js
+    """
+
+    template_name = 'webpush_serviceworker.js'
+    content_type = 'application/javascript'

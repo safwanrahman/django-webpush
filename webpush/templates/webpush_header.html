@@ -2,6 +2,7 @@
   {% load staticfiles %}
 
   <script id="webpush-js" type="text/javascript" src="{% static 'webpush/webpush.js' %}"></script>
-  <script id="service-worker-js" type="text/javascript" src="{% static 'webpush/webpush_serviceworker.js' %}"></script>
+  {# webpush_serviceworker.js render from template as it needs to be served from the same domain #}
+  <meta name="service-worker-js" content="{% url 'service_worker' %}">
   <meta name="django-webpush-vapid-key" content="{{ vapid_public_key }}">
 {% endif %}
