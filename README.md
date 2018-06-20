@@ -88,9 +88,9 @@ Next, inside the `<body></body>` tag, insert `webush_button` where you would lik
 <body>
   <p> Hello World! </p>
   # For django templating engine
-  {% webush_button %}
+  {% webpush_button %}
   # For jinja templating engine
-  {{ webush_button() }}
+  {{ webpush_button() }}
 </body>
 ```
 
