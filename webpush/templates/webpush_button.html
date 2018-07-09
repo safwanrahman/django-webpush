@@ -1,4 +1,4 @@
-{% if request.user.is_authenticated or group %}
+{% if user.is_authenticated or group %}
   <button id="webpush-subscribe-button" {% if group %}data-group="{{ group }}"{% endif %} data-url="{{ webpush_save_url }}">
     Subscribe to Push Messaging
   </button>
