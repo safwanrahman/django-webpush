@@ -1,4 +1,3 @@
-let url;
 // Register event listener for the 'push' event.
 self.addEventListener('push', function(event) {
   // Retrieve the textual payload from event.data (a PushMessageData object).
@@ -20,6 +19,7 @@ self.addEventListener('push', function(event) {
     self.registration.showNotification(head, {
       body: body,
       icon: icon,
+      data: {url: url}	
     })
   );
 });
@@ -28,7 +28,7 @@ self.addEventListener('notificationclick', function (event) {
   event.waitUntil(
     event.preventDefault(),
     event.notification.close(),
-    self.clients.openWindow(url)
+    self.clients.openWindow(event.notification.data.url)
   );
 })
 
