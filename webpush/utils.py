@@ -1,3 +1,5 @@
+import json
+
 from django.conf import settings
 from django.forms.models import model_to_dict
 from django.urls import reverse
@@ -7,6 +9,7 @@ from pywebpush import webpush
 
 def send_notification_to_user(user, payload, ttl=0):
     # Get all the push_info of the user
+    payload = json.dumps(payload)
     push_infos = user.webpush_info.select_related("subscription")
     for push_info in push_infos:
         _send_notification(push_info, payload, ttl)
