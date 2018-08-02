@@ -1,4 +1,3 @@
-import warnings
 from django.conf import settings
 from django.forms.models import model_to_dict
 from django.urls import reverse
@@ -8,12 +7,6 @@ from pywebpush import WebPushException, webpush
 
 def send_notification_to_user(user, payload, ttl=0):
     # Get all the push_info of the user
-
-    warnings.warn(
-        "send_notification_to_user is deprecated, "
-        "use send_to_subscriptions instead",
-        DeprecationWarning
-    )
 
     errors = []
     push_infos = user.webpush_info.select_related("subscription")
@@ -32,12 +25,6 @@ def send_notification_to_user(user, payload, ttl=0):
 def send_notification_to_group(group_name, payload, ttl=0):
     from .models import Group
     # Get all the subscription related to the group
-
-    warnings.warn(
-        "send_notification_to_group is deprecated, "
-        "use send_to_subscriptions instead",
-        DeprecationWarning
-    )
 
     errors = []
     push_infos = Group.objects.get(name=group_name).webpush_info.select_related("subscription")
@@ -59,7 +46,7 @@ def send_to_subscription(subscription, payload, ttl):
 
 def send_to_subscriptions(queryset, payload, ttl):
     errors = []
-    for subscription in queryset:
+    for subscription in queryset.all():
         try:
             _send_notification(subscription, payload, ttl)
 
