@@ -40,21 +40,8 @@ def send_notification_to_group(group_name, payload, ttl=0):
         raise WebPushException("Push failed.", extra=errors)
 
 
-def send_to_subscription(subscription, payload, ttl):
+def send_to_subscription(subscription, payload, ttl=0):
     _send_notification(subscription, payload, ttl)
-
-
-def send_to_subscriptions(queryset, payload, ttl):
-    errors = []
-    for subscription in queryset.all():
-        try:
-            _send_notification(subscription, payload, ttl)
-
-        except WebPushException as ex:
-            errors.append(dict(subscription=subscription, exception=ex))
-
-    if errors:
-        raise WebPushException("Push failed.", extra=errors)
 
 
 def _send_notification(subscription, payload, ttl):

@@ -138,6 +138,35 @@ So in order to send notification, see below.
     # Here in the user parameter, a user object should be passed
     # The user will get notification to all of his subscribed browser. A user can subscribe many browsers.
     ```
+ 
+- If you want fine grained control over sending a single push message, do like following
+
+
+    ```python
+    from webpush import WebPushException, send_single_notification
+
+    payload = {"head": "Welcome!", "body": "Hello World"}
+
+    user = request.user
+    push_infos = user.webpush_info.select_related("subscription")
+    for push_info in push_infos:
+        try:
+            send_single_notification(push_info.subscription, payload)
+
+        except WebPushException as ex:
+            extra = {"subscription": push_info.subscription, "exception": ex}
+            log.error("Sending Push notification failed.", extra=extra)
+            if "<Response [410]>" in str(ex):
+                # 410 = Endpoint Not Valid
+                # remove subscription
+                push_info.subscription.delete()
+
+    ```
+    
+
+
+ 
+ 
  **And the subscribers will get a notification like**
  ![Web Push Notification](http://i.imgur.com/VA6cxRc.png)
 
