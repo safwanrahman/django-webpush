@@ -2,26 +2,49 @@ from django.conf import settings
 from django.forms.models import model_to_dict
 from django.urls import reverse
 
-from pywebpush import webpush
+from pywebpush import WebPushException, webpush
 
 
 def send_notification_to_user(user, payload, ttl=0):
     # Get all the push_info of the user
+
+    errors = []
     push_infos = user.webpush_info.select_related("subscription")
     for push_info in push_infos:
-        _send_notification(push_info, payload, ttl)
+        try:
+            _send_notification(push_info.subscription, payload, ttl)
+
+        except WebPushException as ex:
+            errors.append(dict(subscription=push_info.subscription,
+                               exception=ex))
+
+    if errors:
+        raise WebPushException("Push failed.", extra=errors)
 
 
 def send_notification_to_group(group_name, payload, ttl=0):
     from .models import Group
     # Get all the subscription related to the group
+
+    errors = []
     push_infos = Group.objects.get(name=group_name).webpush_info.select_related("subscription")
     for push_info in push_infos:
-        _send_notification(push_info, payload, ttl)
+        try:
+            _send_notification(push_info.subscription, payload, ttl)
+
+        except WebPushException as ex:
+            errors.append(dict(subscription=push_info.subscription,
+                               exception=ex))
+
+    if errors:
+        raise WebPushException("Push failed.", extra=errors)
 
 
-def _send_notification(push_info, payload, ttl):
-    subscription = push_info.subscription
+def send_to_subscription(subscription, payload, ttl=0):
+    _send_notification(subscription, payload, ttl)
+
+
+def _send_notification(subscription, payload, ttl):
     subscription_data = _process_subscription_info(subscription)
     vapid_data = {}
 
