@@ -110,7 +110,7 @@ return render(request, 'template.html',  {"webpush":webpush})
 Sending Web Push Notification
 -------------------
 
-A Web Push generally have a header and body. According to the W3C Specification, the data should be encrypted in transmission. the data is addressed as payload generally. Also a TTL header should be included indicating how much time the web push server store the data if the user is not online.
+A Web Push generally have a header and body. According to the W3C Specification, the data should be encrypted in transmission. The data is addressed as payload generally. Also a TTL header should be included indicating how much time the web push server store the data if the user is not online.
 So in order to send notification, see below.
 
 - If you would like to send notification to a specific group, do like following:
@@ -138,6 +138,28 @@ So in order to send notification, see below.
     # Here in the user parameter, a user object should be passed
     # The user will get notification to all of his subscribed browser. A user can subscribe many browsers.
     ```
+
+    **And the subscribers will get a notification like:**
+
+![Web Push Notification](http://i.imgur.com/VA6cxRc.png)
+
+- If you notification should have an icon or open a url when clicked, you can add those to the payload:
+
+    ``` python
+    from webpush import send_user_notification
+    
+    from webpush import send_group_notification
+
+    payload = {"head": "Welcome!", "body”: "Hello World", 
+               "icon": "https://i.imgur.com/dRDxiCQ.png“, "url": "https://www.example.com"}
+
+    send_group_notification(group_name="my_group", payload=payload, ttl=1000)
+    ```
+**And the subscribers will get a notification like:**
+
+![Web Push Notification icon](http://i.imgur.com/Vr1RMvF.png)
+
+**That will open https://www.example.com if clicked.**
  
 - If you want fine grained control over sending a single push message, do like following
 
