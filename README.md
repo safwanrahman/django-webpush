@@ -165,23 +165,14 @@ So in order to send notification, see below.
 
 
     ```python
-    from webpush import WebPushException, send_single_notification
+    from webpush.utils import send_to_subscription
 
     payload = {"head": "Welcome!", "body": "Hello World"}
 
     user = request.user
     push_infos = user.webpush_info.select_related("subscription")
     for push_info in push_infos:
-        try:
-            send_single_notification(push_info.subscription, payload)
-
-        except WebPushException as ex:
-            extra = {"subscription": push_info.subscription, "exception": ex}
-            log.error("Sending Push notification failed.", extra=extra)
-            if "<Response [410]>" in str(ex):
-                # 410 = Endpoint Not Valid
-                # remove subscription
-                push_info.subscription.delete()
+        send_to_subscription(push_info.subscription, payload)
 
     ```
     

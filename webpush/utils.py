@@ -8,40 +8,22 @@ from pywebpush import WebPushException, webpush
 def send_notification_to_user(user, payload, ttl=0):
     # Get all the push_info of the user
 
-    errors = []
     push_infos = user.webpush_info.select_related("subscription")
     for push_info in push_infos:
-        try:
-            _send_notification(push_info.subscription, payload, ttl)
-
-        except WebPushException as ex:
-            errors.append(dict(subscription=push_info.subscription,
-                               exception=ex))
-
-    if errors:
-        raise WebPushException("Push failed.", extra=errors)
+        _send_notification(push_info.subscription, payload, ttl)
 
 
 def send_notification_to_group(group_name, payload, ttl=0):
     from .models import Group
     # Get all the subscription related to the group
 
-    errors = []
     push_infos = Group.objects.get(name=group_name).webpush_info.select_related("subscription")
     for push_info in push_infos:
-        try:
-            _send_notification(push_info.subscription, payload, ttl)
-
-        except WebPushException as ex:
-            errors.append(dict(subscription=push_info.subscription,
-                               exception=ex))
-
-    if errors:
-        raise WebPushException("Push failed.", extra=errors)
+        _send_notification(push_info.subscription, payload, ttl)
 
 
 def send_to_subscription(subscription, payload, ttl=0):
-    _send_notification(subscription, payload, ttl)
+    return _send_notification(subscription, payload, ttl)
 
 
 def _send_notification(subscription, payload, ttl):
@@ -60,8 +42,16 @@ def _send_notification(subscription, payload, ttl):
             'vapid_claims': {"sub": "mailto:{}".format(vapid_admin_email)}
         }
 
-    req = webpush(subscription_info=subscription_data, data=payload, ttl=ttl, **vapid_data)
-    return req
+    try:
+        req = webpush(subscription_info=subscription_data, data=payload, ttl=ttl, **vapid_data)
+        return req
+    except WebPushException as e:
+        # If the subscription is expired, delete it.
+        if e.response.status_code == 410:
+            subscription.delete()
+        else:
+            # Its other type of exception!
+            raise e
 
 
 def _process_subscription_info(subscription):
