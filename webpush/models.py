@@ -11,7 +11,7 @@ class Group(models.Model):
 
 class SubscriptionInfo(models.Model):
     browser = models.CharField(max_length=100)
-    endpoint = models.URLField(max_length=255)
+    endpoint = models.URLField(max_length=500)
     auth = models.CharField(max_length=100)
     p256dh = models.CharField(max_length=100)
 
