@@ -16,6 +16,7 @@ def webpush_header(context):
 
 @register.filter
 @register.inclusion_tag('webpush_button.html', takes_context=True)
-def webpush_button(context):
+def webpush_button(context, with_class):
     template_context = get_templatetag_context(context)
+    template_context['class'] = with_class
     return template_context
