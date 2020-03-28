@@ -94,6 +94,18 @@ Next, inside the `<body></body>` tag, insert `webush_button` where you would lik
 </body>
 ```
 
+Or if you want to add custom classes (e.g. bootstrap)
+
+```html
+<body>
+  <p> Hello World! </p>
+  # For django templating engine
+  {% webpush_button with_class="btn btn-outline-info" %}
+  # For jinja templating engine
+  {{ webpush_button(with_class="btn btn-outline-info") }}
+</body>
+```
+
  >**Note:** The Push Notification Button will show only if the user is logged in or any `group` named is passed through `webpush` context
 
  ***If you would like to mark the subscription as a group, like all person subscribe for push notification from the template should be marked as group and would get same notification, you should pass a `webpush` context to the template through views. The `webpush` context should have a dictionary like `{"group": group_name}`*** . Like following

@@ -24,7 +24,9 @@ class WebPushExtension(Extension):
         return mark_safe(data)
 
     @contextfunction
-    def webpush_button(self, context):
+    def webpush_button(self, context, with_class=None):
         template_context = get_templatetag_context(context)
+        if with_class:
+            template_context['class'] = with_class
         data = render_to_string('webpush_button.html', template_context, using='django')
         return mark_safe(data)
