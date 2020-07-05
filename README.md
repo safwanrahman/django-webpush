@@ -1,6 +1,6 @@
 ﻿
 Django-Webpush
-===================
+==============
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/safwanrahman)
 
 Django-Webpush is a Package made for integrating and sending [Web Push Notification](https://developer.mozilla.org/en/docs/Web/API/Push_API) in Django Application.
@@ -11,7 +11,7 @@ Currently, it Supports Sending Push Notification to **Firefox 46+ and Chrome 52+
 
 
 Installation and Setup
--------------
+----------------------
 
 You can install it easily from pypi by running
 
@@ -66,7 +66,7 @@ pass ``pipeline.jinja2.PipelineExtension`` to your jinja environment. Like follo
 
 
 Adding Web Push Information in Template
--------------------
+---------------------------------------
 
 So in template, you need to load `webpush_notifications` custom template tag by following:
 - If you are using built in templating engine, add `{% load webpush_notifications %}` in the template
@@ -120,7 +120,7 @@ return render(request, 'template.html',  {"webpush":webpush})
 ----------
 
 Sending Web Push Notification
--------------------
+-----------------------------
 
 A Web Push generally have a header and body. According to the W3C Specification, the data should be encrypted in transmission. The data is addressed as payload generally. Also a TTL header should be included indicating how much time the web push server store the data if the user is not online.
 So in order to send notification, see below.
