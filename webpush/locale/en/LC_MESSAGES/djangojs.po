@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-25 10:06-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: static/webpush/webpush.js:31
+msgid "Service workers are not supported in your browser."
+msgstr ""
+
+#: static/webpush/webpush.js:40
+msgid "Showing notifications are not supported in your browser."
+msgstr ""
+
+#: static/webpush/webpush.js:49 static/webpush/webpush.js:173
+msgid "Subscribe to Push Messaging"
+msgstr ""
+
+#: static/webpush/webpush.js:51
+msgid "Push notifications are blocked by your browser."
+msgstr ""
+
+#: static/webpush/webpush.js:60
+msgid "Push notifications are not available in your browser."
+msgstr ""
+
+#: static/webpush/webpush.js:73 static/webpush/webpush.js:120
+#: static/webpush/webpush.js:181
+msgid "Unsubscribe from Push Messaging"
+msgstr ""
+
+#: static/webpush/webpush.js:76 static/webpush/webpush.js:123
+msgid "Successfully subscribed to push notifications."
+msgstr ""
+
+#: static/webpush/webpush.js:129
+msgid "Error while subscribing to push notifications."
+msgstr ""
+
+#: static/webpush/webpush.js:161
+msgid "Subscription is not available."
+msgstr ""
+
+#: static/webpush/webpush.js:174
+msgid "Successfully unsubscribed from push notifications."
+msgstr ""
+
+#: static/webpush/webpush.js:182
+msgid "Error while unsubscribing from push notifications."
+msgstr ""
