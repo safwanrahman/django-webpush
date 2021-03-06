@@ -1,6 +1,6 @@
 {% if user.is_authenticated or group %}
   {% load static %}
-
+  <script src="{% url 'javascript-catalog' %}"></script>
   <script id="webpush-js" type="text/javascript" src="{% static 'webpush/webpush.js' %}"></script>
   {# webpush_serviceworker.js render from template as it needs to be served from the same domain #}
   <meta name="service-worker-js" content="{% url 'service_worker' %}">

@@ -28,37 +28,37 @@ window.addEventListener('load', function() {
   }
   // If service worker not supported, show warning to the message box
   else {
-    showMessage('Service Worker is not supported in your Browser!');
+    showMessage(gettext('Service workers are not supported in your browser.'));
   }
 
-  // Once the service worker is registered set the initial state  
+  // Once the service worker is registered set the initial state
   function initialiseState(reg) {
-    // Are Notifications supported in the service worker?  
+    // Are Notifications supported in the service worker?
     if (!(reg.showNotification)) {
         // Show a message and activate the button
         subBtn.textContent = 'Subscribe to Push Messaging';
-        showMessage('Showing Notification is not suppoted in your browser');
+        showMessage(gettext('Showing notifications are not supported in your browser.'));
         return;
     }
 
-    // Check the current Notification permission.  
-    // If its denied, it's a permanent block until the  
-    // user changes the permission  
+    // Check the current Notification permission.
+    // If its denied, it's a permanent block until the
+    // user changes the permission
     if (Notification.permission === 'denied') {
       // Show a message and activate the button
-      subBtn.textContent = 'Subscribe to Push Messaging';
+      subBtn.textContent = gettext('Subscribe to Push Messaging');
       subBtn.disabled = false;
-      showMessage('The Push Notification is blocked from your browser.');
+      showMessage(gettext('Push notifications are blocked by your browser.'));
       return;
     }
 
-    // Check if push messaging is supported  
+    // Check if push messaging is supported
     if (!('PushManager' in window)) {
       // Show a message and activate the button
       subBtn.textContent = 'Subscribe to Push Messaging';
       subBtn.disabled = false;
-      showMessage('Push Notification is not available in the browser');
-      return;  
+      showMessage(gettext('Push notifications are not available in your browser.'));
+      return;
     }
 
     // We need to get subscription state for push notifications and send the information to server
@@ -70,10 +70,10 @@ window.addEventListener('load', function() {
               // Check the information is saved successfully into server
               if (response.status === 201) {
                 // Show unsubscribe button instead
-                subBtn.textContent = 'Unsubscribe to Push Messaging';
+                subBtn.textContent = gettext('Unsubscribe from Push Messaging');
                 subBtn.disabled = false;
                 isPushEnabled = true;
-                showMessage('Successfully subscribed for Push Notification');
+                showMessage(gettext('Successfully subscribed to push notifications.'));
               }
             });
         }
@@ -117,16 +117,16 @@ function subscribe(reg) {
                 // Check the information is saved successfully into server
                 if (response.status === 201) {
                   // Show unsubscribe button instead
-                  subBtn.textContent = 'Unsubscribe to Push Messaging';
+                  subBtn.textContent = gettext('Unsubscribe from Push Messaging');
                   subBtn.disabled = false;
                   isPushEnabled = true;
-                  showMessage('Successfully subscribed for Push Notification');
+                  showMessage(gettext('Successfully subscribed to push notifications.'));
                 }
               });
           })
         .catch(
           function() {
-            console.log('Subscription error.', arguments)
+            console.log(gettext('Error while subscribing to push notifications.'), arguments)
           })
     }
   );
@@ -158,7 +158,7 @@ function unsubscribe(reg) {
           // No subscription object, so set the state
           // to allow the user to subscribe to push
           subBtn.disabled = false;
-          showMessage('Subscription is not available');
+          showMessage(gettext('Subscription is not available.'));
           return;
         }
         postSubscribeObj('unsubscribe', subscription,
@@ -170,31 +170,31 @@ function unsubscribe(reg) {
               subscription.unsubscribe()
                 .then(
                   function(successful) {
-                    subBtn.textContent = 'Subscribe to Push Messaging';
-                    showMessage('Successfully unsubscribed for Push Notification');
+                    subBtn.textContent = gettext('Subscribe to Push Messaging');
+                    showMessage(gettext('Successfully unsubscribed from push notifications.'));
                     isPushEnabled = false;
                     subBtn.disabled = false;
                   }
                 )
                 .catch(
                   function(error) {
-                    subBtn.textContent = 'Unsubscribe to Push Messaging';
-                    showMessage('Error during unsubscribe from Push Notification');
+                    subBtn.textContent = gettext('Unsubscribe from Push Messaging');
+                    showMessage(gettext('Error while unsubscribing from push notifications.'));
                     subBtn.disabled = false;
                   }
                 );
             }
           });
       }
-    )  
+    )
 }
 
 function postSubscribeObj(statusType, subscription, callback) {
   // Send the information to the server with fetch API.
-  // the type of the request, the name of the user subscribing, 
+  // the type of the request, the name of the user subscribing,
   // and the push subscription endpoint + key the server needs
   // to send push messages
-  
+
   var browser = navigator.userAgent.match(/(firefox|msie|chrome|safari|trident)/ig)[0].toLowerCase(),
     data = {  status_type: statusType,
               subscription: subscription.toJSON(),
