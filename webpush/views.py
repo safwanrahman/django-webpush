@@ -4,6 +4,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
 from django.views.generic import TemplateView
 
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+
 from .forms import WebPushForm, SubscriptionForm
 
 
@@ -44,6 +47,47 @@ def save_info(request):
             # Unsubscribe is made, means object is deleted. So return 202
             elif "unsubscribe":
                 return HttpResponse(status=202)
+
+    return HttpResponse(status=400)
+
+
+@api_view(['POST'])
+@permission_classes((IsAuthenticated, ))
+@csrf_exempt
+def jwt_save_info(request):
+    # Parse the  json object from post data. return 400 if the json encoding is wrong
+    try:
+        post_data = json.loads(request.body.decode('utf-8'))
+    except ValueError:
+        return HttpResponse(status=400)
+
+    # Process the subscription data to mach with the model
+    subscription_data = process_subscription_data(post_data)
+    subscription_form = SubscriptionForm(subscription_data)
+    # pass the data through WebPushForm for validation purpose
+    web_push_form = WebPushForm(post_data)
+
+    
+    # Get the cleaned data in order to get status_type and group_name
+    web_push_data = web_push_form.cleaned_data
+    status_type = web_push_data.pop("status_type")
+    group_name = web_push_data.pop("group")
+
+    # We at least need the user or group to subscribe for a notification
+    if request.user.is_authenticated or group_name:
+        # Save the subscription info with subscription data
+        # as the subscription data is a dictionary and its valid
+        subscription = subscription_form.get_or_save()
+        web_push_form.save_or_delete(
+            subscription=subscription, user=request.user,
+            status_type=status_type, group_name=group_name)
+
+        # If subscribe is made, means object is created. So return 201
+        if status_type == 'subscribe':
+            return HttpResponse(status=201)
+        # Unsubscribe is made, means object is deleted. So return 202
+        elif "unsubscribe":
+            return HttpResponse(status=202)
 
     return HttpResponse(status=400)
 

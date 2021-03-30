@@ -17,6 +17,7 @@ urlpatterns = [
          ),
          name='javascript-catalog'),
     path('save_information', views.save_info, name='save_webpush_info'),
+    path('jwt/save_information', views.jwt_save_info, name='jwt_save_webpush_info'),
     # Service worker need to be loaded from same domain
     path('service-worker.js', views.ServiceWorkerView.as_view(), name='service_worker')
 ]
