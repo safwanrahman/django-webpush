@@ -8,7 +8,7 @@ from . import views
 
 # When we last restarted the server; used for cache control headers and
 # invalidating the server side cache on server restart
-last_modified_date = timezone.now()
+last_modified_date = timezone.now().strftime("%Y-%m-%d_%H:%M:%S")
 
 urlpatterns = [
     path('jsi18n/',
