@@ -49,15 +49,22 @@ urlpatterns =  [
 
 `django-webpush` is shipped with built in **`jinja`** support.
 If you would like to use with jinja backend,
-pass ``pipeline.jinja2.PipelineExtension`` to your jinja environment. Like following:
+pass ``pipeline.jinja2.PipelineExtension`` to your jinja environment.
+If you are using `django_jinja` as template backend you can do following:
 
 ```python
-{
-    "BACKEND": "django_jinja.backend.Jinja2",
-    "OPTIONS": {
-      'extensions': ['webpush.jinja2.WebPushExtension'],
+from django_jinja.builtins import DEFAULT_EXTENSIONS
+
+TEMPLATES = [
+    {
+        "BACKEND": "django_jinja.backend.Jinja2",
+        "OPTIONS": {
+            "extensions": DEFAULT_EXTENSIONS + [
+                "webpush.jinja2.WebPushExtension"
+            ]
+        }
     }
-},
+]
 ```
 
 
