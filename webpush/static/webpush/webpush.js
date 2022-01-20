@@ -196,9 +196,11 @@ function postSubscribeObj(statusType, subscription, callback) {
   // to send push messages
 
   var browser = navigator.userAgent.match(/(firefox|msie|chrome|safari|trident)/ig)[0].toLowerCase(),
+    user_agent = navigator.userAgent,
     data = {  status_type: statusType,
               subscription: subscription.toJSON(),
               browser: browser,
+              user_agent: user_agent,
               group: subBtn.dataset.group
            };
 
