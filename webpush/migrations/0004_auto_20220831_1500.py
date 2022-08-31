@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('webpush', '0002_auto_20190603_0005'),
+        ('webpush', '0003_subscriptioninfo_user_agent'),
     ]
 
     operations = [
