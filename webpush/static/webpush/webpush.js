@@ -7,6 +7,8 @@ var isPushEnabled = false,
 window.addEventListener('load', function() {
   subBtn = document.getElementById('webpush-subscribe-button');
 
+  subBtn.textContent = gettext('Subscribe to Push Messaging');
+
   subBtn.addEventListener('click',
     function() {
       subBtn.disabled = true;
@@ -36,7 +38,6 @@ window.addEventListener('load', function() {
     // Are Notifications supported in the service worker?
     if (!(reg.showNotification)) {
         // Show a message and activate the button
-        subBtn.textContent = 'Subscribe to Push Messaging';
         showMessage(gettext('Showing notifications are not supported in your browser.'));
         return;
     }
@@ -46,7 +47,6 @@ window.addEventListener('load', function() {
     // user changes the permission
     if (Notification.permission === 'denied') {
       // Show a message and activate the button
-      subBtn.textContent = gettext('Subscribe to Push Messaging');
       subBtn.disabled = false;
       showMessage(gettext('Push notifications are blocked by your browser.'));
       return;
@@ -55,7 +55,6 @@ window.addEventListener('load', function() {
     // Check if push messaging is supported
     if (!('PushManager' in window)) {
       // Show a message and activate the button
-      subBtn.textContent = 'Subscribe to Push Messaging';
       subBtn.disabled = false;
       showMessage(gettext('Push notifications are not available in your browser.'));
       return;
