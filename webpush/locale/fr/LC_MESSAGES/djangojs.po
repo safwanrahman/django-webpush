@@ -1,0 +1,44 @@
+#: static/webpush/webpush.js:31
+msgid "Service workers are not supported in your browser."
+msgstr "Les travailleurs de service ne sont pas pris en charge dans votre navigateur."
+
+#: static/webpush/webpush.js:40
+msgid "Showing notifications are not supported in your browser."
+msgstr "L'affichage des notifications n'est pas pris en charge dans votre navigateur."
+
+#: static/webpush/webpush.js:49 static/webpush/webpush.js:173
+msgid "Subscribe to Push Messaging"
+msgstr "Abonnez-vous à la messagerie push"
+
+#: static/webpush/webpush.js:51
+msgid "Push notifications are blocked by your browser."
+msgstr "Les notifications push sont bloquées par votre navigateur."
+
+#: static/webpush/webpush.js:60
+msgid "Push notifications are not available in your browser."
+msgstr "Les notifications push sont bloquées par votre navigateur."
+
+#: static/webpush/webpush.js:73 static/webpush/webpush.js:120
+#: static/webpush/webpush.js:181
+msgid "Unsubscribe from Push Messaging"
+msgstr "Se désabonner de la messagerie push"
+
+#: static/webpush/webpush.js:76 static/webpush/webpush.js:123
+msgid "Successfully subscribed to push notifications."
+msgstr "Abonné avec succès aux notifications push."
+
+#: static/webpush/webpush.js:129
+msgid "Error while subscribing to push notifications."
+msgstr "Erreur lors de l'abonnement aux notifications push."
+
+#: static/webpush/webpush.js:161
+msgid "Subscription is not available."
+msgstr "L'abonnement n'est pas disponible."
+
+#: static/webpush/webpush.js:174
+msgid "Successfully unsubscribed from push notifications."
+msgstr "Désinscription des notifications push reussie."
+
+#: static/webpush/webpush.js:182
+msgid "Error while unsubscribing from push notifications."
+msgstr "Erreur lors de la désinscription des notifications push."
