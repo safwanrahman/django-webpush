@@ -50,7 +50,7 @@ def _send_notification(subscription, payload, ttl, headers={}):
         https://developer.apple.com/documentation/usernotifications/sending_web_push_notifications_in_web_apps_safari_and_other_browsers#3994592
         """
         
-        headers['ttl'] = str(headers.get("ttl", "0"))
+        headers['ttl'] = str(headers.get("ttl", ttl))
         headers['topic'] = str(headers.get("topic", "10"))
         headers['urgency'] = headers.get("urgency", "normal")
         
