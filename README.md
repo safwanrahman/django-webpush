@@ -203,7 +203,6 @@ So in order to send notification, see below.
  ![Web Push Notification](http://i.imgur.com/VA6cxRc.png)
  
  
-    ```
 
 
 - To send push notifications to the safari browser, apple allows you to pass custom headers, you can send them as follows:
