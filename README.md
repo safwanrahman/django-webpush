@@ -201,11 +201,15 @@ So in order to send notification, see below.
  
  **And the subscribers will get a notification like**
  ![Web Push Notification](http://i.imgur.com/VA6cxRc.png)
+ 
+ 
+    ```
 
 
 - To send push notifications to the safari browser, apple allows you to pass custom headers, you can send them as follows:
 
     headers = { "topic" : "0", "urgency" = "normal" }
+    
     send_user_notification(user=user, payload=payload, ttl=1000, headers=headers)
 
     You can find more information at the following link:
