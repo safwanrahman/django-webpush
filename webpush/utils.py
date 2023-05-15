@@ -42,6 +42,19 @@ def _send_notification(subscription, payload, ttl, headers={}):
             'vapid_claims': {"sub": "mailto:{}".format(vapid_admin_email)}
         }
 
+    endpoint = subscription_data.get("endpoint")
+    if endpoint.startswith("https://web.push.apple.com"):
+        """
+        ttl, topic, urgency are required headers for web push notifications with Apple
+        Documentation:
+        https://developer.apple.com/documentation/usernotifications/sending_web_push_notifications_in_web_apps_safari_and_other_browsers#3994592
+        """
+        
+        headers['ttl'] = str(headers.get("ttl", "0"))
+        headers['topic'] = str(headers.get("topic", "10"))
+        headers['urgency'] = headers.get("urgency", "normal")
+        
+
     try:
         req = webpush(subscription_info=subscription_data, data=payload, ttl=ttl, headers=headers, **vapid_data)
         return req
