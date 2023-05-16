@@ -210,14 +210,21 @@ So in order to send notification, see below.
     ```python
     from webpush import send_user_notification
     
-    headers = { "topic" : "0", "urgency" : "normal" }
+    headers = {"topic": "0", "urgency": "normal"}
     payload = {"head": "Welcome!", "body": "Hello World"}
     
     send_user_notification(user=user, payload=payload, ttl=1000, headers=headers)
     
     ```
     
+    To send push notifications to the safari browser, write the email vapid as follows:
+    
+    ```python
+    VAPID_ADMIN_EMAIL='email@example.com'
+    ```
+    
     You can also send custom headers, for example, apple allows you to [send extra parameters](https://developer.apple.com/documentation/usernotifications/sending_web_push_notifications_in_web_apps_safari_and_other_browsers#3994592), then you can use the headers argument to send them.
+    
     
     
 License
