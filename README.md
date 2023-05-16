@@ -36,6 +36,13 @@ WEBPUSH_SETTINGS = {
 ```
 **Replace ``"Vapid Public Key"`` and ``"Vapid Private Key"`` with your Vapid Keys. Also replace ``admin@example.com`` with your email so that the push server of browser can reach to you if anything goes wrong.**
 
+    To send push notifications to the safari browser, write the email vapid as follows:
+    
+    ```python
+    VAPID_ADMIN_EMAIL='email@example.com'
+    ```
+    
+
 > **To know how to obtain Vapid Keys please see this [`py_vapid`](https://github.com/web-push-libs/vapid/tree/master/python) and [Google Developer Documentation](https://developers.google.com/web/fundamentals/push-notifications/subscribing-a-user#how_to_create_application_server_keys). You can obtain one easily from [web-push-codelab.glitch.me](https://web-push-codelab.glitch.me/). ``Application Server Keys`` and ``Vapid Keys`` both are same.**
 
 Then include `webpush` in the `urls.py`
@@ -215,12 +222,6 @@ So in order to send notification, see below.
     
     send_user_notification(user=user, payload=payload, ttl=1000, headers=headers)
     
-    ```
-    
-    To send push notifications to the safari browser, write the email vapid as follows:
-    
-    ```python
-    VAPID_ADMIN_EMAIL='email@example.com'
     ```
     
     You can also send custom headers, for example, apple allows you to [send extra parameters](https://developer.apple.com/documentation/usernotifications/sending_web_push_notifications_in_web_apps_safari_and_other_browsers#3994592), then you can use the headers argument to send them.
