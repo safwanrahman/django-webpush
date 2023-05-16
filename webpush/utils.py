@@ -45,7 +45,7 @@ def _send_notification(subscription, payload, ttl, headers={}):
     endpoint = subscription_data.get("endpoint")
     if endpoint.startswith("https://web.push.apple.com"):
         """
-        ttl, topic, urgency are required headers for web push notifications with Apple
+        ttl, topic, urgency now are optional headers for web push notifications in Safari
         Documentation:
         https://developer.apple.com/documentation/usernotifications/sending_web_push_notifications_in_web_apps_safari_and_other_browsers#3994592
         """
