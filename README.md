@@ -215,10 +215,11 @@ So in order to send notification, see below.
     payload = {"head": "Welcome!", "body": "Hello World"}
     
     send_user_notification(user=user, payload=payload, ttl=1000, headers=headers)
-
+    
+    ```
     
     You can also send custom headers, for example, apple allows you to [send extra parameters](https://developer.apple.com/documentation/usernotifications/sending_web_push_notifications_in_web_apps_safari_and_other_browsers#3994592), then you can use the headers argument to send them.
-    ```
+    
     
 License
 =======
