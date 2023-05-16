@@ -210,8 +210,7 @@ So in order to send notification, see below.
     ```python
     from webpush import send_user_notification
     
-    user = request.user
-    headers = { "topic" : "0", "urgency" = "normal" }
+    headers = { "topic" : "0", "urgency" : "normal" }
     payload = {"head": "Welcome!", "body": "Hello World"}
     
     send_user_notification(user=user, payload=payload, ttl=1000, headers=headers)
