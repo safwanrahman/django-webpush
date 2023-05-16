@@ -208,12 +208,16 @@ So in order to send notification, see below.
 - To send push notifications to the safari browser, apple allows you to pass custom headers, you can send them as follows:
     
     ```python
+    from webpush import send_user_notification
+    
+    user = request.user
     headers = { "topic" : "0", "urgency" = "normal" }
+    payload = {"head": "Welcome!", "body": "Hello World"}
     
     send_user_notification(user=user, payload=payload, ttl=1000, headers=headers)
 
-    You can find more information at the following link:
-    https://developer.apple.com/documentation/usernotifications/sending_web_push_notifications_in_web_apps_safari_and_other_browsers#3994592
+    
+    You can also send custom headers, for example, apple allows you to [send extra parameters](https://developer.apple.com/documentation/usernotifications/sending_web_push_notifications_in_web_apps_safari_and_other_browsers#3994592), then you can use the headers argument to send them.
     ```
     
 License
