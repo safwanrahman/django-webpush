@@ -57,7 +57,7 @@ msgstr "Odběr není dostupný."
 
 #: static/webpush/webpush.js:174
 msgid "Successfully unsubscribed from push notifications."
-msgstr "Zrušení dběru oznámení proběhl úspěšně."
+msgstr "Zrušení odběru oznámení proběhlo úspěšně."
 
 #: static/webpush/webpush.js:182
 msgid "Error while unsubscribing from push notifications."
