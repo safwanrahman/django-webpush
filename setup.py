@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-webpush',
-    version='0.3.5',
+    version='0.3.6',
     packages=find_packages(),
     include_package_data=True,
     license='GNU Public License',
@@ -34,6 +34,6 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     install_requires=[
-        'pywebpush==1.9.4'
+        'pywebpush>=1.9.4'
     ]
 )
