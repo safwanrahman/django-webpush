@@ -55,8 +55,9 @@ def process_subscription_data(post_data):
     # we need to refactor it and insert the auth and p256dh keys in the same dictionary
     keys = subscription_data.pop("keys", {})
     subscription_data.update(keys)
-    # Insert the browser name
-    subscription_data["browser"] = post_data.pop("browser")
+    # Insert the browser name and user agent
+    subscription_data["browser"] = post_data.pop("browser", None)
+    subscription_data["user_agent"] = post_data.pop("user_agent", None)
     return subscription_data
 
 
