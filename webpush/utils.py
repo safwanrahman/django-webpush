@@ -13,13 +13,19 @@ def send_notification_to_user(user, payload, ttl=0):
         _send_notification(push_info.subscription, payload, ttl)
 
 
-def send_notification_to_group(group_name, payload, ttl=0):
+def send_notification_to_group(group_name, payload, ttl=0, exclude_user_id=None):
     from .models import Group
-    # Get all the subscription related to the group
 
     push_infos = Group.objects.get(name=group_name).webpush_info.select_related("subscription")
+
+    # Exclude the current user from receiving notifications if they are part of the target group.
+    # This prevents users from receiving redundant notifications when they trigger an event themselves.
+    if exclude_user_id is not None:
+        push_infos = push_infos.exclude(user__id=exclude_user_id)
+
     for push_info in push_infos:
         _send_notification(push_info.subscription, payload, ttl)
+
 
 
 def send_to_subscription(subscription, payload, ttl=0):
