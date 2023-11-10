@@ -57,7 +57,7 @@ def process_subscription_data(post_data):
     subscription_data.update(keys)
     # Insert the browser name and user agent
     subscription_data["browser"] = post_data.pop("browser", None)
-    subscription_data["user_agent"] = post_data.pop("user_agent", None)
+    subscription_data["user_agent"] = post_data.pop("user_agent", '')
     return subscription_data
 
 

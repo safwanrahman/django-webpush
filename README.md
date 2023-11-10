@@ -5,7 +5,7 @@ Django-Webpush
 
 Django-Webpush is a Package made for integrating and sending [Web Push Notification](https://developer.mozilla.org/en/docs/Web/API/Push_API) in Django Application.
 
-Currently, it Supports Sending Push Notification to **Firefox 46+ and Chrome 52+**.
+Currently, it Supports Sending Push Notification to **Firefox 46+, Chrome 52+ and Apple devices on iOS 16.4+**.
 
 ----------
 
