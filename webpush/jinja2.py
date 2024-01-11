@@ -1,8 +1,12 @@
 import arrow
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
-from jinja2 import contextfunction
-
+try:
+    from jinja2 import pass_context as pass_context
+except ImportError:
+    # NOTE(willkg): We can get rid of this when we stop supporting Jinja2 < 3.
+    from jinja2 import contextfunction as pass_context
+    
 from jinja2 import nodes
 from jinja2.ext import Extension
 from markupsafe import Markup
@@ -17,13 +21,13 @@ class WebPushExtension(Extension):
         environment.globals['webpush_header'] = self.webpush_header
         environment.globals['webpush_button'] = self.webpush_button
 
-    @contextfunction
+    @pass_context
     def webpush_header(self, context):
         template_context = get_templatetag_context(context)
         data = render_to_string('webpush_header.html', template_context, using='django')
         return mark_safe(data)
 
-    @contextfunction
+    @pass_context
     def webpush_button(self, context, with_class=None):
         template_context = get_templatetag_context(context)
         if with_class:
