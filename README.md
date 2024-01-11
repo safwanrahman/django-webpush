@@ -38,11 +38,13 @@ WEBPUSH_SETTINGS = {
 
 > **To know how to obtain Vapid Keys please see this [`py_vapid`](https://github.com/web-push-libs/vapid/tree/master/python) and [Google Developer Documentation](https://developers.google.com/web/fundamentals/push-notifications/subscribing-a-user#how_to_create_application_server_keys). You can obtain one easily from [web-push-codelab.glitch.me](https://web-push-codelab.glitch.me/). ``Application Server Keys`` and ``Vapid Keys`` both are same.**
 
-Then include `webpush` in the `urls.py`
+Then include `webpush` in the `urls.py` of your Django project, which is in the same folder of `settings.py`
 
 ```python
+from django.urls import re_path
+
 urlpatterns =  [
-    url(r'^webpush/', include('webpush.urls'))
+    re_path(r'^webpush/', include('webpush.urls')),
 ]
   ```
 
