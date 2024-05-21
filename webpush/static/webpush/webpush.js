@@ -30,7 +30,7 @@ window.addEventListener('load', function() {
   }
   // If service worker not supported, show warning to the message box
   else {
-    showMessage(gettext('Service workers are not supported in your browser.'));
+    showMessage(gettext('Service workers are not supported by your browser.'));
   }
 
   // Once the service worker is registered set the initial state
@@ -38,7 +38,7 @@ window.addEventListener('load', function() {
     // Are Notifications supported in the service worker?
     if (!(reg.showNotification)) {
         // Show a message and activate the button
-        showMessage(gettext('Showing notifications are not supported in your browser.'));
+        showMessage(gettext('Web Notifications are not supported by your browser.'));
         return;
     }
 
