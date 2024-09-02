@@ -41,11 +41,20 @@ WEBPUSH_SETTINGS = {
 Then include `webpush` in the `urls.py`
 
 ```python
+# Django >= 2.0
+from django.urls import path, include
+
+urlpatterns =  [
+    path('webpush/', include('webpush.urls'))
+]
+
+# Django < 2.0
+from django.conf.urls import url, include
+
 urlpatterns =  [
     url(r'^webpush/', include('webpush.urls'))
 ]
-  ```
-
+```
 
 `django-webpush` is shipped with built in **`jinja`** support.
 If you would like to use with jinja backend,
