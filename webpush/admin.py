@@ -8,6 +8,7 @@ from .utils import _send_notification
 
 class PushInfoAdmin(admin.ModelAdmin):
     list_display = ("__str__", "user", "subscription", "group")
+
     actions = ("send_test_message",)
 
     def send_test_message(self, request, queryset):

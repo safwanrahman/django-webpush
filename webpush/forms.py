@@ -18,15 +18,15 @@ class WebPushForm(forms.Form):
             data["user"] = user
 
         if group_name:
-            group, created = Group.objects.get_or_create(name=group_name)
+            group, _ = Group.objects.get_or_create(name=group_name)
             data["group"] = group
 
         data["subscription"] = subscription
 
-        push_info, created = PushInformation.objects.get_or_create(**data)
+        push_info, _ = PushInformation.objects.get_or_create(**data)
 
         # If unsubscribe is called, that means need to delete the browser
-        # and notification info from server. 
+        # and notification info from server.
         if status_type == "unsubscribe":
             push_info.delete()
             subscription.delete()
@@ -39,5 +39,5 @@ class SubscriptionForm(forms.ModelForm):
         fields = ('endpoint', 'auth', 'p256dh', 'browser', 'user_agent')
 
     def get_or_save(self):
-        subscription, created = SubscriptionInfo.objects.get_or_create(**self.cleaned_data)
+        subscription, _ = SubscriptionInfo.objects.get_or_create(**self.cleaned_data)
         return subscription
