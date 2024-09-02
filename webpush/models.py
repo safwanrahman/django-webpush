@@ -48,9 +48,9 @@ class PushInformation(models.Model):
 
     def __str__(self):
         if self.group:
-            return self.group
+            return f'{self.group}'
 
-        return self.user
+        return f'{self.user}'
 
     class Meta:
         verbose_name = _("Push Information")
