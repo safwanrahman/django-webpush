@@ -211,6 +211,28 @@ So in order to send notification, see below.
  **And the subscribers will get a notification like**
  ![Web Push Notification](http://i.imgur.com/VA6cxRc.png)
 
+Contributing
+------------
+
+If you would like to contribute, fork the repository and send a pull request. You can also open an issue if you find any bug or want to suggest a feature.
+
+Internationalization
+---------------------
+
+The package is shipped with built in internationalization support.
+
+If you would like to add more language or update translation, you can run the following command:
+
+```bash
+
+# Add js translation
+django-admin makemessages -d djangojs -l <language_code>
+
+# Add python translation
+django-admin makemessages -l <language_code>
+```
+
+After that, you can run `django-admin compilemessages` to compile the messages.
 
 License
 =======
