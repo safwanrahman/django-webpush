@@ -1,14 +1,15 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from .models import Group, PushInformation, SubscriptionInfo
 
 
 class WebPushForm(forms.Form):
-    group = forms.CharField(max_length=255, required=False)
+    group = forms.CharField(max_length=255, required=False, label=_("Group"))
     status_type = forms.ChoiceField(choices=[
-                                      ('subscribe', 'subscribe'),
-                                      ('unsubscribe', 'unsubscribe')
-                                    ])
+                                      ('subscribe', _('Subscribe')),
+                                      ('unsubscribe', _('Unsubscribe'))
+                                    ], label=_("Status Type"))
 
     def save_or_delete(self, subscription, user, status_type, group_name):
         # Ensure get_or_create matches exactly
