@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-25 10:06-0500\n"
+"POT-Creation-Date: 2024-09-02 17:03-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,47 +18,47 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: static/webpush/webpush.js:31
+#: static/webpush/webpush.js:10 static/webpush/webpush.js:172
+msgid "Subscribe to Push Messaging"
+msgstr ""
+
+#: static/webpush/webpush.js:33
 msgid "Service workers are not supported in your browser."
 msgstr ""
 
-#: static/webpush/webpush.js:40
+#: static/webpush/webpush.js:41
 msgid "Showing notifications are not supported in your browser."
-msgstr ""
-
-#: static/webpush/webpush.js:49 static/webpush/webpush.js:173
-msgid "Subscribe to Push Messaging"
 msgstr ""
 
 #: static/webpush/webpush.js:51
 msgid "Push notifications are blocked by your browser."
 msgstr ""
 
-#: static/webpush/webpush.js:60
+#: static/webpush/webpush.js:59
 msgid "Push notifications are not available in your browser."
 msgstr ""
 
-#: static/webpush/webpush.js:73 static/webpush/webpush.js:120
-#: static/webpush/webpush.js:181
+#: static/webpush/webpush.js:72 static/webpush/webpush.js:119
+#: static/webpush/webpush.js:180
 msgid "Unsubscribe from Push Messaging"
 msgstr ""
 
-#: static/webpush/webpush.js:76 static/webpush/webpush.js:123
+#: static/webpush/webpush.js:75 static/webpush/webpush.js:122
 msgid "Successfully subscribed to push notifications."
 msgstr ""
 
-#: static/webpush/webpush.js:129
+#: static/webpush/webpush.js:128
 msgid "Error while subscribing to push notifications."
 msgstr ""
 
-#: static/webpush/webpush.js:161
+#: static/webpush/webpush.js:160
 msgid "Subscription is not available."
 msgstr ""
 
-#: static/webpush/webpush.js:174
+#: static/webpush/webpush.js:173
 msgid "Successfully unsubscribed from push notifications."
 msgstr ""
 
-#: static/webpush/webpush.js:182
+#: static/webpush/webpush.js:181
 msgid "Error while unsubscribing from push notifications."
 msgstr ""
