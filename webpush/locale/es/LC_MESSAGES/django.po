@@ -1,0 +1,107 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-02 17:03-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: admin.py:16
+msgid "Hey"
+msgstr "Hola"
+
+#: admin.py:16
+msgid "Hello World"
+msgstr "Hola Mundo"
+
+#: admin.py:20
+msgid "Test sent successfully"
+msgstr "Prueba enviada con éxito"
+
+#: admin.py:22
+msgid "Deprecated subscription deleted"
+msgstr "Suscripción obsoleta eliminada"
+
+#: admin.py:23
+msgid "Send test message"
+msgstr "Enviar mensaje de prueba"
+
+#: forms.py:8 models.py:14 models.py:38
+msgid "Group"
+msgstr "Grupo"
+
+#: forms.py:10
+msgid "Subscribe"
+msgstr "Suscribirse"
+
+#: forms.py:11
+msgid "Unsubscribe"
+msgstr "Desuscribirse"
+
+#: forms.py:12
+msgid "Status Type"
+msgstr "Tipo de estado"
+
+#: models.py:8
+msgid "Name"
+msgstr "Nombre"
+
+#: models.py:15
+msgid "Groups"
+msgstr "Grupos"
+
+#: models.py:20
+msgid "Browser"
+msgstr "Navegador"
+
+#: models.py:21
+msgid "User Agent"
+msgstr "Agente de usuario"
+
+#: models.py:22
+msgid "Endpoint"
+msgstr "Endpoint"
+
+#: models.py:23
+msgid "Auth"
+msgstr "Autenticación"
+
+#: models.py:24
+msgid "P256DH"
+msgstr "P256DH"
+
+#: models.py:30
+msgid "Subscription Info"
+msgstr "Información de suscripción"
+
+#: models.py:31
+msgid "Subscription Infos"
+msgstr "Informaciones de suscripción"
+
+#: models.py:36
+msgid "User"
+msgstr "Usuario"
+
+#: models.py:37
+msgid "Subscription"
+msgstr "Suscripción"
+
+#: models.py:47
+msgid "At least user or group should be present"
+msgstr "Debe haber al menos un usuario o grupo presente"
+
+#: models.py:56 models.py:57
+msgid "Push Information"
+msgstr "Información de notificación"
