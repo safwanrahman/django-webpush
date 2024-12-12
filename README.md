@@ -36,7 +36,11 @@ WEBPUSH_SETTINGS = {
 ```
 **Replace ``"Vapid Public Key"`` and ``"Vapid Private Key"`` with your Vapid Keys. Also replace ``admin@example.com`` with your email so that the push server of browser can reach to you if anything goes wrong.**
 
-> **To know how to obtain Vapid Keys please see this [`py_vapid`](https://github.com/web-push-libs/vapid/tree/master/python) and [Google Developer Documentation](https://developers.google.com/web/fundamentals/push-notifications/subscribing-a-user#how_to_create_application_server_keys). You can obtain one easily from [web-push-codelab.glitch.me](https://web-push-codelab.glitch.me/). ``Application Server Keys`` and ``Vapid Keys`` both are same.**
+**Generate a Vapid key pair**
+
+```shell
+python manage.py webpush_generate_vapid_keypair
+```
 
 Then include `webpush` in the `urls.py`
 
